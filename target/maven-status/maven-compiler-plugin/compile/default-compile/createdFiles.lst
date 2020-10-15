@@ -1,2 +1,5 @@
+com\LetsMeet\restservice\UserRepository.class
 com\LetsMeet\restservice\GreetingController.class
+com\LetsMeet\restservice\User.class
+com\LetsMeet\restservice\Application.class
 com\LetsMeet\restservice\Greeting.class
