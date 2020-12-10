@@ -1,21 +1,26 @@
 package com.LetsMeet.controllers;
 
+import com.LetsMeet.exceptions.ForbiddenException;
 import com.LetsMeet.exceptions.ResourceNotFoundException;
 import com.LetsMeet.models.User;
 import com.LetsMeet.models.UserRepository;
+import com.LetsMeet.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/userapi")
 public class UserController {
     @Autowired
     private UserRepository userRepository;
+    private UserService userService;
 
     /**
      * Get all users list.
@@ -41,6 +46,35 @@ public class UserController {
                 userRepository
                         .findById(userId)
                         .orElseThrow(() -> new ResourceNotFoundException("User not found on :: " + userId));
+        return ResponseEntity.ok().body(user);
+    }
+
+    @GetMapping("/userByMail/{email_address}")
+    public ResponseEntity getUserByMail(@PathVariable(value = "email_address") String userMail)
+            throws ResourceNotFoundException {
+        User user =
+                userRepository
+                        .findByEmail(userMail)
+                        .orElseThrow(() -> new ResourceNotFoundException("User not found on :: " + userMail));
+        return ResponseEntity.ok().body(user);
+    }
+
+    @GetMapping("/login")
+    public String loginForm(Model model) {
+        model.addAttribute("user", new User());
+        return "login";
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody Map<String, Object> request)
+            throws ResourceNotFoundException, ForbiddenException {
+        String email_address = (String) request.get("email_address");
+        String password = (String) request.get("password");
+
+        User user =
+                userService
+                .findByEmailAndPassword(email_address, password);
+
         return ResponseEntity.ok().body(user);
     }
 
