@@ -1,11 +1,9 @@
 package com.LetsMeet.controllers;
 
+import com.LetsMeet.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.LetsMeet.exceptions.ForbiddenException;
 import com.LetsMeet.exceptions.ResourceNotFoundException;
-import com.LetsMeet.models.Sondage;
-import com.LetsMeet.models.ChoixRepository;
-import com.LetsMeet.models.SondageRepository;
 import com.LetsMeet.models.SondageRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
@@ -26,7 +24,15 @@ public class SondageController {
     private SondageRepository sondageRepository;
     private ChoixRepository choixRepository;
 
-    @RequestMapping(value="/api/sondage/find")
+    @GetMapping("/sondage/{choix}")
+    public ResponseEntity getSondageByChoix(@PathVariable(value = "choix") Long sondageChoix)
+            throws ResourceNotFoundException {
+        Sondage sondage =
+                (Sondage) sondageRepository
+                        .findByChoix(sondageChoix)
+                        .orElseThrow(() -> new ResourceNotFoundException("Sondage not found on:: " + sondageChoix));
+        return ResponseEntity.ok().body(sondage);
+    }
 
 
 
