@@ -5,6 +5,9 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
+public interface ChoixRepository extends JpaRepository<Choix, Long> {
 
-public class ChoixRepository {
+    Optional<Choix> findById(Long id);
+
+
 }

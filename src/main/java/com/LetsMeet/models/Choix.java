@@ -1,6 +1,7 @@
 package com.LetsMeet.models;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Choix {
@@ -13,7 +14,7 @@ public class Choix {
     private String place;
 
     @Column(name = "date", nullable = false)
-    private String date;
+    private Date date;
 
     @ManyToOne
     private Sondage sondage;
@@ -42,11 +43,11 @@ public class Choix {
         this.place = place;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 }
