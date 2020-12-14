@@ -16,10 +16,11 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/userapi")
+//@RequestMapping("/userapi")
 public class UserController {
     @Autowired
     private UserRepository userRepository;
+    @Autowired
     private UserService userService;
 
     /**
@@ -81,12 +82,18 @@ public class UserController {
     /**
      * Create user user.
      *
-     * @param user the user
      * @return the user
      */
-    @PostMapping("/users")
-    public User createUser(@Valid @RequestBody User user) {
-        return userRepository.save(user);
+    @PostMapping("/signup")
+    public ResponseEntity<?> createUser(@Valid @RequestBody Map<String, Object> request) throws ForbiddenException {
+
+        String email_address = (String) request.get("email_address");
+        String first_name = (String) request.get("first_name");
+        String last_name = (String) request.get("last_name");
+        String password = (String) request.get("password");
+
+        User user = userService.infoValidation(email_address,first_name,last_name,password);
+        return ResponseEntity.ok().body(user);
     }
 
     /**
