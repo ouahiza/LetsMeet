@@ -9,5 +9,5 @@ import java.util.Optional;
 public interface SondageRepository extends JpaRepository<Sondage, Long> {
     Optional<Sondage> findByTitre(String titre);
 
-    Optional<Object> findByChoix(Long sondageChoix);
+    Optional<Sondage> findById(Long Id);
 }

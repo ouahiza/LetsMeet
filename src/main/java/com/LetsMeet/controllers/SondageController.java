@@ -24,13 +24,13 @@ public class SondageController {
     private SondageRepository sondageRepository;
     private ChoixRepository choixRepository;
 
-    @GetMapping("/sondage/{choix}")
-    public ResponseEntity getSondageByChoix(@PathVariable(value = "choix") Long sondageChoix)
+    @GetMapping("/sondage/{id}")
+    public ResponseEntity getSondageById(@PathVariable(value = "id") Long sondageId)
             throws ResourceNotFoundException {
         Sondage sondage =
                 (Sondage) sondageRepository
-                        .findByChoix(sondageChoix)
-                        .orElseThrow(() -> new ResourceNotFoundException("Sondage not found on:: " + sondageChoix));
+                        .findById(sondageId)
+                        .orElseThrow(() -> new ResourceNotFoundException("Sondage not found on:: " + sondageId));
         return ResponseEntity.ok().body(sondage);
     }
 
