@@ -7,7 +7,7 @@ import java.util.Optional;
 
 @Repository
 public interface SondageRepository extends JpaRepository<Sondage, Long> {
-    Optional<Sondage> findByTitre(String titre);
+    Optional<Sondage> findByName(String name);
 
     Optional<Sondage> findById(Long id);
 }
