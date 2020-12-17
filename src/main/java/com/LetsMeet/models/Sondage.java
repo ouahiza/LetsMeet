@@ -3,6 +3,7 @@ package com.LetsMeet.models;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
@@ -13,6 +14,16 @@ public class Sondage {
 
     @Column(name = "name", nullable = false)
     private String name;
+    @OneToMany(mappedBy="sondage")
+    private Set<Choix> choices;
+
+    public Set<Choix> getChoices() {
+        return choices;
+    }
+
+    public void setChoices(Set<Choix> choices) {
+        this.choices = choices;
+    }
 
     public String getName() {
         return name;

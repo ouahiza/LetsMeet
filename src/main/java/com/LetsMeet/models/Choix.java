@@ -17,6 +17,7 @@ public class Choix {
     private Date date;
 
     @ManyToOne
+    @JoinColumn(name="sondage_id", nullable = false)
     private Sondage sondage;
 
     public Sondage getSondage() {

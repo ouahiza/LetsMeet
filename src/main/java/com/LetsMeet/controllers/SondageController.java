@@ -7,7 +7,10 @@ import com.LetsMeet.models.SondageRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 @RestController
 //@RequestMapping ("/sondageapi")
@@ -33,7 +36,17 @@ public class SondageController {
     public boolean createSurvey(@RequestBody Map<String, Object> request)
             throws ResourceNotFoundException {
         String name = (String) request.get("name");
-        String[] choices = (String[]) request.get("choices");
+        ArrayList<?> choices = (ArrayList<?>) request.get("choices");
+        Set<Choix> choicesSet = new HashSet<Choix>();
+        for (Object o : choices ) {
+            Choix choix = new Choix();
+            //choix.setPlace(o.get());
+
+
+        }
+        Sondage sondage = new Sondage();
+        sondage.setName(name);
+        sondage.setChoices(choicesSet);
 
         //User user =
         //      userService
