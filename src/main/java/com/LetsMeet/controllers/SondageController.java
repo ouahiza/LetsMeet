@@ -7,6 +7,8 @@ import com.LetsMeet.models.SondageRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @RestController
@@ -31,14 +33,14 @@ public class SondageController {
 
     @PostMapping("/createsurvey")
     public boolean createSurvey(@RequestBody Map<String, Object> request)
-            throws ResourceNotFoundException {
+            throws ResourceNotFoundException, ParseException {
         String name = (String) request.get("name");
         ArrayList<LinkedHashMap> choices = (ArrayList<LinkedHashMap>) request.get("choices");
         Set<Choix> choicesSet = new HashSet<Choix>();
         for (LinkedHashMap o : choices) {
             Choix choix = new Choix();
             choix.setPlace((String) o.get("place"));
-            choix.setDate((Date) o.get("date"));
+            choix.setDate(new SimpleDateFormat("dd/MM/yyyy").parse((String) o.get("date")));
 
             choicesSet.add(choix);
 
