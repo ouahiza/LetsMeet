@@ -1,0 +1,36 @@
+
+w {
+    color: white;
+    font-size: 100px;
+    margin: 100px;
+
+
+}
+
+header {
+     color: blue;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+}
+
+header {
+     background: red;
+     height: 50px;
+     width: 100%;
+     margin: 0;
+     padding: 80px;
+     background-color: purple;
+}
+
+form {
+    text-align: center;
+    font-size: 26px;
+    padding: 30px;
+}
+
+bouton {
+    font-size: 50px;
+}
