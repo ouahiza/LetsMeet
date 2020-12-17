@@ -32,7 +32,7 @@ public class SondageController {
 // création de sondage
 
     @PostMapping("/createsurvey")
-    public boolean createSurvey(@RequestBody Map<String, Object> request)
+    public Sondage createSurvey(@RequestBody Map<String, Object> request)
             throws ResourceNotFoundException, ParseException {
         String name = (String) request.get("name");
         ArrayList<LinkedHashMap> choices = (ArrayList<LinkedHashMap>) request.get("choices");
@@ -54,7 +54,7 @@ public class SondageController {
         //           .findByEmailAndPassword(email_address, password);
 
         //return ResponseEntity.ok();//.body(user);
-        return true;
+        return sondageRepository.save(sondage);
     }
 
 }
