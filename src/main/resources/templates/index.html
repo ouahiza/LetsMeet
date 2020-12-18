@@ -9,11 +9,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
+<H3>Bonjour, veuillez entrez vos identifiants afin que nous puissions vous identifier.</H3>
 
 <form action="#" th:action="@{/login}" th:object="${user}" method="post">
     <p>Login: <input type="text" th:field="*{email}" /></p>
     <p>Password: <input type="text" th:field="*{password}" /></p>
-<p><input type="submit" value="Submit" font-size="40"/> <input type="reset" value="Reset" font-size="30"/></p>
+<p><input type="submit" value="Submit " style="width:130px"/> <input type="reset" value="Reset" style="width:130px"/></p>
 </form>
 </body>
 </html>
