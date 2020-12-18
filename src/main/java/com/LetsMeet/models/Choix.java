@@ -16,7 +16,7 @@ public class Choix {
     @Column(name = "date", nullable = false)
     private Date date;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="sondage_id", nullable = false)
     private Sondage sondage;
 

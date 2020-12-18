@@ -14,7 +14,8 @@ public class Sondage {
 
     @Column(name = "name", nullable = false)
     private String name;
-    @OneToMany(mappedBy="sondage")
+
+    @OneToMany(mappedBy="sondage", cascade = CascadeType.PERSIST)
     private Set<Choix> choices;
 
     public Set<Choix> getChoices() {
