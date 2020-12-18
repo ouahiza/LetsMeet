@@ -43,17 +43,13 @@ public class SondageController {
             choix.setDate(new SimpleDateFormat("dd/MM/yyyy").parse((String) o.get("date")));
 
             choicesSet.add(choix);
+            choixRepository.save(choix);
 
         }
         Sondage sondage = new Sondage();
         sondage.setName(name);
         sondage.setChoices(choicesSet);
 
-        //User user =
-        //      userService
-        //           .findByEmailAndPassword(email_address, password);
-
-        //return ResponseEntity.ok();//.body(user);
         return sondageRepository.save(sondage);
     }
 
